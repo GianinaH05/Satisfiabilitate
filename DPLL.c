@@ -391,6 +391,7 @@ int clauzavida(setclauze *set)
     {
         if(set->clauze[i].total==0)
             return 1;
+        
     }
     return 0;
 }
@@ -422,7 +423,7 @@ int dpll(setclauze *set)
     if(set->n==1 || set->literalmax==0)
         return 1;
     if(clauzavida(set))
-        return 0;
+        {return 0;}
     int nou=1;
     while(nou)
     {
@@ -446,10 +447,6 @@ int dpll(setclauze *set)
                     {
                         return 0;
                     }
-                    // for(int i=0;i<set->n;i++)
-                    // {
-                    //     afisareclauza(set->clauze[i]);
-                    // }
                 }
             }
         }
@@ -519,10 +516,6 @@ int dpll(setclauze *set)
             }
         }
     }
-    // for(int i=0;i<copie1.n;i++)
-    // {
-    //     afisareclauza(copie1.clauze[i]);
-    // }
     if(dpll(&copie1))
     {
         freeset(&copie1);

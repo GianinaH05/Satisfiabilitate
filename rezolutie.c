@@ -21,7 +21,6 @@ typedef struct
     int maxn;
 }setclauze;
 int clauzecreate;
-int nesat;
 void printMemoryUsage() 
 {
     PROCESS_MEMORY_COUNTERS memInfo;
@@ -160,7 +159,7 @@ int clauzanoua(setclauze set,clauza a)
             {
                return 0; 
             }
-        }
+            }
         }
     }
     return 1;
@@ -285,18 +284,7 @@ int rezolutie(setclauze *set)
                     {
                         if(!tautologie(c) && clauzanoua(*set,c))
                         {
-                            // printf("Clause vechi:\n");
-                            // printf("%d \n",i);
-                            // afisareclauza(set->clauze[i]);n
-                            // printf("%d \n",j);
-                            // afisareclauza(set->clauze[j]);
-                            // printf("Clauza noua:\n");
-                            // afisareclauza(c);
                             clauzecreate++;
-                            if(clauzecreate%1000==0)
-                            {
-                                printf("%d\n",clauzecreate);
-                            }
                             if(clauzecreate%90000==0)
                             {
                                 return 1;
@@ -327,7 +315,6 @@ int rezolutie(setclauze *set)
 int main()
 {
     clauzecreate=0;
-    nesat=0;
     LARGE_INTEGER frequency, st, en;
     QueryPerformanceFrequency(&frequency);
     QueryPerformanceCounter(&st);

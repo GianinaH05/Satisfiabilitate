@@ -174,7 +174,7 @@ void citire(FILE *fisier,setclauze *set)
 }
 int clauzanoua(setclauze set,clauza a)
 {
-    if(a.total>set.maxn)
+    if(a.total>set.maxn+2)
         return 0;
     else
     {
@@ -319,8 +319,6 @@ void singurlit(setclauze *set,int lit)
         {
             if(opus>-1)
             {
-                // afisareclauza(set->clauze[i]);
-                // printf("literal: %d \n",lit);
                 if(set->clauze[i].literali[opus]>0)
                     set->pur[set->nrliterali+set->clauze[i].literali[opus]-1]--;
                 else
@@ -401,10 +399,6 @@ int dp(setclauze *set)
                     {
                         return 0;
                     }
-                    // for(int i=0;i<set->n;i++)
-                    // {
-                    //     afisareclauza(set->clauze[i]);
-                    // }
                 }
             }
         }
@@ -439,19 +433,8 @@ int dp(setclauze *set)
                     {
                         if(!tautologie(c) && clauzanoua(*set,c))
                         {
-                            // printf("Clause vechi:\n");
-                            // printf("%d \n",i);
-                            // afisareclauza(set->clauze[i]);n
-                            // printf("%d \n",j);
-                            // afisareclauza(set->clauze[j]);
-                            // printf("Clauza noua:\n");
-                            // afisareclauza(c);
                             clauzecreate++;
-                            if(clauzecreate%1000==0)
-                            {
-                                printf("%d\n",clauzecreate);
-                            }
-                            if(clauzecreate%100000==0)
+                            if(clauzecreate%90000==0)
                             {
                                 return 1;
                             }
